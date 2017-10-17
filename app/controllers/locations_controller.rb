@@ -13,6 +13,10 @@ class LocationsController < ApplicationController
     source_url = "http://developer.itsmarta.com/BRDRestService/RestBusRealTimeService/GetAllBus"
 
     @buses = fetch_buses_from_api(source_url)
+
+    @buses.select! do |bus|
+      is_nearby?(@location.latitude, @location.longitude, bus["LATITUDE"], bus["LONGITUDE"])
+    end
   end
 
   # GET /locations/new
