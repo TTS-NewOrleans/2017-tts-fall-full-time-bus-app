@@ -22,6 +22,7 @@ class LocationsController < ApplicationController
   # GET /locations/new
   def new
     @location = Location.new
+    @cities = Location::CITIES
   end
 
   # GET /locations/1/edit
